@@ -35,6 +35,24 @@ const AddRecipe = () => {
           value={recipeData.source}
           onChange={changeHandler}
         />
+        <input
+          placeholder="Ingredients"
+          name="ingredients"
+          value={recipeData.ingredients}
+          onChange={changeHandler}
+        />
+        <input
+          placeholder="Category"
+          name="category"
+          value={recipeData.category}
+          onChange={changeHandler}
+        />
+        <textarea
+          placeholder="Instructions"
+          name="instructions"
+          value={recipeData.instructions}
+          onChange={changeHandler}
+        />
       </form>
     </div>
   );
