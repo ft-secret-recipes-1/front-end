@@ -36,13 +36,14 @@ const Homepage = () => {
             ]
         },
     ]},])
-    
+
     
     const deleteRecipe = (recipe_id) => {
         setRecipes(recipes.filter(recipe => {
             if (recipe.recipe_id !== recipe_id) {
                 return true;
-            } 
+            }
+            return false;
         }));
     }
     return (
