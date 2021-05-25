@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 const initialState = {
   title: "",
@@ -23,36 +24,58 @@ const AddRecipe = () => {
     <div>
       <h1>New Recipe</h1>
       <form onSubmit={onSubmit}>
-        <input
-          placeholder="Title"
-          name="title"
-          value={recipeData.title}
-          onChange={changeHandler}
-        />
-        <input
-          placeholder="Source"
-          name="source"
-          value={recipeData.source}
-          onChange={changeHandler}
-        />
-        <input
-          placeholder="Ingredients"
-          name="ingredients"
-          value={recipeData.ingredients}
-          onChange={changeHandler}
-        />
-        <input
-          placeholder="Category"
-          name="category"
-          value={recipeData.category}
-          onChange={changeHandler}
-        />
-        <textarea
-          placeholder="Instructions"
-          name="instructions"
-          value={recipeData.instructions}
-          onChange={changeHandler}
-        />
+        <div className="form-group w-75">
+          <label htmlFor="title">Title</label>
+
+          <input
+            name="title"
+            value={recipeData.title}
+            onChange={changeHandler}
+            className="form-control"
+            id="title"
+          />
+
+          <label htmlFor="source">Source</label>
+
+          <input
+            name="source"
+            value={recipeData.source}
+            onChange={changeHandler}
+            className="form-control"
+            id="source"
+          />
+
+          <label htmlFor="ingredients">Ingredients</label>
+
+          <input
+            name="ingredients"
+            value={recipeData.ingredients}
+            onChange={changeHandler}
+            className="form-control"
+            id="ingredients"
+          />
+
+          <label htmlFor="category">Category</label>
+
+          <input
+            name="category"
+            value={recipeData.category}
+            onChange={changeHandler}
+            className="form-control"
+            id="category"
+          />
+
+          <label htmlFor="instructions">Instructions</label>
+          <textarea
+            name="instructions"
+            value={recipeData.instructions}
+            onChange={changeHandler}
+            className="form-control"
+            id="instructions"
+            rows="3"
+          />
+        </div>
+        <Button className="btn btn-light">Add</Button>
       </form>
     </div>
   );
