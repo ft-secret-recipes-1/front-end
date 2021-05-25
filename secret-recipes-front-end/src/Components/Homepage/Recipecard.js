@@ -2,7 +2,7 @@
 
 const Recipecard = (props) => {
     const {recipe, deleteRecipe} = props;
-
+    
     const categoryHref = `/category/${recipe.category.category_id}`
     return(
         <div className='Recipecard'>
@@ -37,7 +37,9 @@ const Recipecard = (props) => {
             <a href={categoryHref}>{recipe.category.category}</a>
             </div>
             <div className='modify'>
-                <a onClick={deleteRecipe(recipe.recipe_id)}>Delete</a>
+                <button href='#' onClick={() => {
+                    deleteRecipe(recipe.recipe_id)
+                }}>Delete</button>
             </div>
         </div>
     )
