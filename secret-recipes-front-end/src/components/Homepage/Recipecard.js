@@ -1,6 +1,7 @@
 // import { useHistory } from "react-router";
 // need react-router set up
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 const Recipecard = (props) => {
     const {recipe, deleteRecipe} = props;
@@ -13,7 +14,12 @@ const Recipecard = (props) => {
     }
 
     return(
-        <div className='Recipecard'>
+        <Card className='Recipecard'
+        style={{
+            width: '500px',
+            padding: '30px'
+    }}
+        >
             <h2>{recipe.title}</h2>
             <b>{recipe.source}</b>
             <h3>Instructions</h3>
@@ -35,7 +41,6 @@ const Recipecard = (props) => {
                                     )
                                 })}
                             </ul><br/>
-                            <li key={step.step_id} className='instruction'>{step.description}</li>
                         </li>
                     )
                 })}
@@ -53,7 +58,7 @@ const Recipecard = (props) => {
                     Edit
                 </Button>
             </div>
-        </div>
+        </Card>
     )
 
 }
