@@ -1,6 +1,7 @@
 // import { useHistory } from "react-router";
 // need react-router set up
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 const Recipecard = (props) => {
     const {recipe, deleteRecipe} = props;
@@ -13,9 +14,16 @@ const Recipecard = (props) => {
     }
 
     return(
-        <div className='Recipecard'>
-            <h2>{recipe.title}</h2>
-            <b>{recipe.source}</b>
+        <Card className='Recipecard'
+        style={{
+            width: '500px',
+            padding: '30px',
+            margin: "0 auto 0 auto"
+    }}
+        >
+            <h2>{recipe.recipe_name}</h2>
+            <b>Source:</b>
+            <span>{recipe.recipe_source}</span><br/>
             <h3>Instructions</h3>
             <ol className='instructions'>
                 {recipe.shapedSteps.map(step => {
@@ -35,16 +43,20 @@ const Recipecard = (props) => {
                                     )
                                 })}
                             </ul><br/>
-                            <li key={step.step_id} className='instruction'>{step.description}</li>
                         </li>
                     )
                 })}
             </ol>
             <div className='category'>
             <h3>Categories</h3>
-            <a onClick={navToLink} link={categeoryLink} href={categeoryLink}>{recipe.category.category}</a>
+            <a onClick={navToLink} link={categeoryLink} href={categeoryLink}>#{recipe.category.category}</a>
             </div>
-            <div className='modifyCard'>
+            <div className='modifyCard'   
+            style={{
+                    display:"flex",
+                    "justify-content": "space-evenly"
+                }}>
+
                 <Button variant="danger" href='#' target='' onClick={ev => {
                     ev.preventDefault();
                     deleteRecipe(recipe.recipe_id)
@@ -53,7 +65,7 @@ const Recipecard = (props) => {
                     Edit
                 </Button>
             </div>
-        </div>
+        </Card>
     )
 
 }
