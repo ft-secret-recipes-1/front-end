@@ -5,8 +5,8 @@ const Recipecard = (props) => {
     const {recipe, deleteRecipe} = props;
     // const history = useHistory();
 
-    const categoryHref = `/category/${recipe.category.category_id}`
-    const navToHref = ev => {
+    const categeoryLink = `/category/${recipe.category.category_id}`
+    const navToLink = ev => {
         ev.preventDefault();
         // history.push(ev.target.target)
     }
@@ -27,7 +27,7 @@ const Recipecard = (props) => {
                                 step.step_ingredients.map(ingredient => {
                                     const ingTarget = `/ingredient/${ingredient.ingredient.ingredient_id}`
                                     return (
-                                    <li className='ingredient' key={ingredient.step_ingredient_id}><a link={ingTarget} href={ingTarget}>
+                                    <li className='ingredient' key={ingredient.step_ingredient_id}><a link={ingTarget} href={ingTarget} onClick={navToLink}>
                                         {`${ingredient.quantity} ${ingredient.ingredient.ingredient_unit}${ingredient.quantity === 1 ? '' : 's' }
                                          of ${ingredient.ingredient.ingredient_name}`}
                                     </a></li>
@@ -41,15 +41,15 @@ const Recipecard = (props) => {
             </ol>
             <div className='category'>
             <h3>Categories</h3>
-            <a href={categoryHref}>{recipe.category.category}</a>
+            <a onClick={navToLink} link={categeoryLink} href={categeoryLink}>{recipe.category.category}</a>
             </div>
             <div className='modifyCard'>
                 <button href='#' target='' onClick={ev => {
                     ev.preventDefault();
                     deleteRecipe(recipe.recipe_id)
                 }}>Delete</button>
-                <button href='#' target={`/edit/${recipe.recipe_id}`} onClick={navToHref}>
-
+                <button href={`/edit/${recipe.recipe_id}`} target={`/edit/${recipe.recipe_id}`} onClick={navToLink}>
+                    Edit
                 </button>
             </div>
         </div>
