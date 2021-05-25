@@ -1,5 +1,6 @@
 // import { useHistory } from "react-router";
 // need react-router set up
+import Button from "react-bootstrap/Button";
 
 const Recipecard = (props) => {
     const {recipe, deleteRecipe} = props;
@@ -44,13 +45,13 @@ const Recipecard = (props) => {
             <a onClick={navToLink} link={categeoryLink} href={categeoryLink}>{recipe.category.category}</a>
             </div>
             <div className='modifyCard'>
-                <button href='#' target='' onClick={ev => {
+                <Button variant="danger" href='#' target='' onClick={ev => {
                     ev.preventDefault();
                     deleteRecipe(recipe.recipe_id)
-                }}>Delete</button>
-                <button href={`/edit/${recipe.recipe_id}`} target={`/edit/${recipe.recipe_id}`} onClick={navToLink}>
+                }}>Delete</Button>
+                <Button className="btn btn-light" href={`/edit/${recipe.recipe_id}`} target={`/edit/${recipe.recipe_id}`} onClick={navToLink}>
                     Edit
-                </button>
+                </Button>
             </div>
         </div>
     )

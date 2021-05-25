@@ -1,6 +1,6 @@
 import "./App.css";
 import AddRecipe from "./components/AddRecipe";
-import Homepage from './Components/Homepage/Homepage'
+import Homepage from './components/Homepage/Homepage'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
