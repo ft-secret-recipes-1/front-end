@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Recipelist from './Recipelist'
+import axios from 'axios'
 
 const Homepage = () => {
     const [recipes, setRecipes] = useState([{
@@ -37,6 +38,19 @@ const Homepage = () => {
         },
     ]},])
 
+    // useEffect(() => {
+    //     let error = null;
+    //     axios.get('https://ft-bw-may-secret-family-recipe.herokuapp.com/api')
+    //     .catch(err => {
+    //         console.error(err);
+    //         error = err;
+    //     }).then(res => {
+    //         if (!error) {
+    //             setRecipes(res.data);
+    //         }
+
+    //     })
+    // }, [])
     
     const deleteRecipe = (recipe_id) => {
         setRecipes(recipes.filter(recipe => {
