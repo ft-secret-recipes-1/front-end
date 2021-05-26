@@ -20,21 +20,21 @@ const Input = styled.input`
 `;
 
 const initialState = {
-  recipe_name: "",
-  recipe_source: "",
-  category: "",
+  recipe_name: "k",
+  recipe_source: "k",
+  category: "k",
   recipe_steps: [
     {
-      step_description: "",
-      step_number: null,
+      step_description: "k",
+      step_number: 1,
     },
   ],
   step_ingredients: [
     {
-      quantity: null,
+      quantity: 1,
       ingredient: {
-        ingredient_name: "",
-        ingredient_unit: "",
+        ingredient_name: "k",
+        ingredient_unit: "k",
       },
     },
   ],
@@ -53,13 +53,13 @@ const AddRecipe = () => {
     e.preventDefault();
     axios
       .post(
-        "https://ft-bw-may-secret-family-recipe.herokuapp.com/api/items",
+        "https://ft-bw-may-secret-family-recipe.herokuapp.com/api/recipes",
         recipeData
       )
       .then((res) => {
         console.log(res);
         alert("New Recipe Added 🤠");
-        history.push("/");
+        // history.push("/");
       });
   };
 
