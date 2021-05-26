@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import Button from "react-bootstrap/Button";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import styled from "styled-components"
 
 import FormButton from './FormButton'
@@ -128,7 +128,9 @@ const ModifyRecipe = (props) => {
                 style={{ borderRadius: "5px" }}
               />
             <FormButton buttonType={formType} />
-
+              <Button style={{ margin: "5% 50%" }} className="btn btn-light">
+                Add
+              </Button>
             </form>
           </FormContainer>
         </Col>

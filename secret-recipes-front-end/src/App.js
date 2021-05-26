@@ -12,20 +12,10 @@ function App () {
     <Router>
       <div className='App'>
         <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/signIn' component={SignInForm} />
-          <SignUpForm path='/signUp' component={SignUpForm} />
-          <Route path='/addRecipe' component={ModifyRecipe} />
-          <Route
-            path='/editRecipe/:id'
-            render={() => {
-              <ModifyRecipe
-                passedRecipe={
-                  "here I think? I'm not sure, you'd have to restructure this."
-                }
-              />
-            }}
-          />
+          <Route exact path="/" component={Homepage} />
+          <Route path="/signIn" component={SignInForm} />
+          <Route path="/signUp" component={SignUpForm} />
+          <Route path="/addRecipe" component={AddRecipe} />
         </Switch>
       </div>
     </Router>
