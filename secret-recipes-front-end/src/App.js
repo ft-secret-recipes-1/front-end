@@ -55,7 +55,13 @@ function App () {
       <div className='App'>
         <Header />
         <Switch>
-          <Route exact path='/' component={Homepage} />
+          <Route
+            exact
+            path='/'
+            render={() => {
+              return <Homepage recipes={recipes} setRecipes={setRecipes} />
+            }}
+          />
           <Route path='/signIn' component={SignInForm} />
           <SignUpForm path='/signUp' component={SignUpForm} />
           <Route path='/addRecipe' component={AddRecipe} />
