@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Button from "react-bootstrap/Button";
 import { Container, Row, Col, Button } from "reactstrap";
-import styled from "styled-components";
+import styled from "styled-components"
+
+import FormButton from './FormButton'
 
 //Styled Components
 const FormContainer = styled.div`
@@ -25,8 +27,16 @@ const initialState = {
   category: "",
 };
 
-const AddRecipe = () => {
+const ModifyRecipe = (props) => {
+  const {passedRecipe} = props;
   const [recipeData, setRecipeData] = useState(initialState);
+  let formType;
+  console.log(1, formType);
+  useEffect(() => {
+    if (passedRecipe) {
+      setRecipeData(passedRecipe)
+    }
+  }, [passedRecipe])
 
   const changeHandler = (e) => {
     e.preventDefault();
@@ -117,8 +127,8 @@ const AddRecipe = () => {
                 rows="3"
                 style={{ borderRadius: "5px" }}
               />
-
-              <Button style={{ marginTop: "5%" }} className="btn btn-light">
+            <FormButton buttonType={formType} />
+              <Button style={{ margin: "5% 50%" }} className="btn btn-light">
                 Add
               </Button>
             </form>
@@ -129,4 +139,4 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+export default ModifyRecipe;
