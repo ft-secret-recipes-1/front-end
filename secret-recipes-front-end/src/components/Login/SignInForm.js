@@ -10,6 +10,7 @@ const initialState = {
 
 
 const SignInForm = (props) => {
+    const {changeHandler} = props;
     const [formSign, setFormSign] = useState(initialState);
 
     const changeHandler = (e) => {
@@ -38,7 +39,7 @@ const SignInForm = (props) => {
 
                     <label htmlFor="password">Password:</label>
 
-                    <input name="password" tyep="password"
+                    <input name="password" type="password"
                         value={formSign.password}
                         onChange={changeHandler}
                         className="form-control"/>
