@@ -2,6 +2,8 @@ import React, { useState } from "react";
 // import Button from "react-bootstrap/Button";
 import { Container, Row, Col, Button } from "reactstrap";
 import styled from "styled-components";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 //Styled Components
 const FormContainer = styled.div`
@@ -18,15 +20,29 @@ const Input = styled.input`
 `;
 
 const initialState = {
-  title: "",
-  source: "",
-  ingredients: "",
-  instructions: "",
+  recipe_name: "",
+  recipe_source: "",
   category: "",
+  recipe_steps: [
+    {
+      step_description: "",
+      step_number: null,
+    },
+  ],
+  step_ingredients: [
+    {
+      quantity: null,
+      ingredient: {
+        ingredient_name: "",
+        ingredient_unit: "",
+      },
+    },
+  ],
 };
 
 const AddRecipe = () => {
   const [recipeData, setRecipeData] = useState(initialState);
+  const history = useHistory();
 
   const changeHandler = (e) => {
     e.preventDefault();
@@ -35,7 +51,18 @@ const AddRecipe = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post(
+        "https://ft-bw-may-secret-family-recipe.herokuapp.com/api/items",
+        recipeData
+      )
+      .then((res) => {
+        console.log(res);
+        alert("New Recipe Added 🤠");
+        history.push("/");
+      });
   };
+
   return (
     <Container>
       <Row>
@@ -50,8 +77,8 @@ const AddRecipe = () => {
                 Title
               </label>
               <Input
-                name="title"
-                value={recipeData.title}
+                name="recipe_name"
+                value={recipeData.recipe_name}
                 onChange={changeHandler}
                 className="form-control"
                 id="title"
@@ -65,8 +92,8 @@ const AddRecipe = () => {
               </label>
 
               <Input
-                name="source"
-                value={recipeData.source}
+                name="recipe_source"
+                value={recipeData.recipe_source}
                 onChange={changeHandler}
                 className="form-control"
                 id="source"
