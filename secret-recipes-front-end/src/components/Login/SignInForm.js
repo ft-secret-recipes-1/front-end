@@ -1,7 +1,6 @@
 import {useState} from "react";
 import Button from "react-bootstrap/esm/Button";
 import Modal from "react-bootstrap/Modal";
-import ButtonGroup from "react-bootstrap/ButtonGroup"
 
 const initialState = {
     userName: '',
@@ -10,23 +9,26 @@ const initialState = {
 
 
 const SignInForm = (props) => {
-    const {changeHandler} = props;
     const [formSign, setFormSign] = useState(initialState);
 
     const changeHandler = (e) => {
         e.preventDefault();
         setFormSign({
-            ...recipeData,
+            ...formSign,
             [e.target.name]: e.target.value
         });
+    }
+
+    const navToLink = (ev) => {
+      console.log(ev.target.title)
     }
 
     return (
         <Modal.Dialog>
             <Modal.Header closeButton>
-                <Modal.title>
+                <Modal.Title>
                     Log-In
-                </Modal.title>
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form>
@@ -46,9 +48,11 @@ const SignInForm = (props) => {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={redirectTo}>Log-In</Button>
-                <Button onClick={navToLink}>Register</Button>
+                <Button title='' onClick={navToLink}>Log-In</Button>
+                <Button title='' onClick={navToLink}>Register</Button>
             </Modal.Footer>
         </Modal.Dialog>
     )
 }
+
+export default SignInForm;
