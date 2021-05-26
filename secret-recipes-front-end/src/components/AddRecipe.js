@@ -1,5 +1,21 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
+import { Container, Row, Col, Button } from "reactstrap";
+import styled from "styled-components";
+
+//Styled Components
+const FormContainer = styled.div`
+  margin-top: 10%;
+  width: 100%;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  margin-bottom: 15px;
+`;
 
 const initialState = {
   title: "",
@@ -21,63 +37,95 @@ const AddRecipe = () => {
     e.preventDefault();
   };
   return (
-    <div>
-      <h1>New Recipe</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group w-75">
-          <label htmlFor="title">Title</label>
+    <Container>
+      <Row>
+        <Col xs="12" md={{ size: 6, offset: 3 }}>
+          <h2>New Recipe</h2>
+          <FormContainer>
+            <form onSubmit={onSubmit}>
+              <label
+                htmlFor="title"
+                style={{ display: "block", textAlign: "left" }}
+              >
+                Title
+              </label>
+              <Input
+                name="title"
+                value={recipeData.title}
+                onChange={changeHandler}
+                className="form-control"
+                id="title"
+              />
 
-          <input
-            name="title"
-            value={recipeData.title}
-            onChange={changeHandler}
-            className="form-control"
-            id="title"
-          />
+              <label
+                htmlFor="source"
+                style={{ display: "block", textAlign: "left" }}
+              >
+                Source
+              </label>
 
-          <label htmlFor="source">Source</label>
+              <Input
+                name="source"
+                value={recipeData.source}
+                onChange={changeHandler}
+                className="form-control"
+                id="source"
+              />
 
-          <input
-            name="source"
-            value={recipeData.source}
-            onChange={changeHandler}
-            className="form-control"
-            id="source"
-          />
+              <label
+                htmlFor="ingredients"
+                style={{ display: "block", textAlign: "left" }}
+              >
+                Ingredients
+              </label>
 
-          <label htmlFor="ingredients">Ingredients</label>
+              <Input
+                name="ingredients"
+                value={recipeData.ingredients}
+                onChange={changeHandler}
+                className="form-control"
+                id="ingredients"
+              />
 
-          <input
-            name="ingredients"
-            value={recipeData.ingredients}
-            onChange={changeHandler}
-            className="form-control"
-            id="ingredients"
-          />
+              <label
+                htmlFor="category"
+                style={{ display: "block", textAlign: "left" }}
+              >
+                Category
+              </label>
 
-          <label htmlFor="category">Category</label>
+              <Input
+                name="category"
+                value={recipeData.category}
+                onChange={changeHandler}
+                className="form-control"
+                id="category"
+              />
 
-          <input
-            name="category"
-            value={recipeData.category}
-            onChange={changeHandler}
-            className="form-control"
-            id="category"
-          />
+              <label
+                htmlFor="instructions"
+                style={{ display: "block", textAlign: "left" }}
+              >
+                Instructions
+              </label>
+              <textarea
+                name="instructions"
+                value={recipeData.instructions}
+                onChange={changeHandler}
+                className="form-control"
+                id="instructions"
+                rows="3"
+                style={{ borderRadius: "5px" }}
+              />
 
-          <label htmlFor="instructions">Instructions</label>
-          <textarea
-            name="instructions"
-            value={recipeData.instructions}
-            onChange={changeHandler}
-            className="form-control"
-            id="instructions"
-            rows="3"
-          />
-        </div>
-        <Button className="btn btn-light">Add</Button>
-      </form>
-    </div>
+              <Button style={{ marginTop: "5%" }} className="btn btn-light">
+                Add
+              </Button>
+            </form>
+          </FormContainer>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
