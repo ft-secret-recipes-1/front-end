@@ -28,7 +28,7 @@ const Recipecard = (props) => {
             <ol className='instructions'>
                 {recipe.shapedSteps.map(step => {
                     return (
-                        <li>
+                        <li key={step.step_id}>
                             <b className='description'>{step.step_description}</b><br/><br/>
                             <b className='descriptor'>Ingredients:</b>
                             <ul className='ingredients'>
@@ -48,13 +48,13 @@ const Recipecard = (props) => {
                 })}
             </ol>
             <div className='category'>
-            <h3>Categories</h3>
+            <h3>Category</h3>
             <a onClick={navToLink} link={categeoryLink} href={categeoryLink}>#{recipe.category.category}</a>
             </div>
             <div className='modifyCard'   
             style={{
                     display:"flex",
-                    "justify-content": "space-evenly"
+                    justifyContent: "space-evenly"
                 }}>
 
                 <Button variant="danger" href='#' target='' onClick={ev => {
