@@ -23,35 +23,31 @@ const SignInForm = (props) => {
     });
   };
 
-  useEffect(() => {
-    history.push("/");
-  }, []);
-
   const navToLink = (ev) => {
     console.log(ev.target.title);
   };
 
   //TODO(Post Request)
 
-  //   const onSubmit = (e) => {
-  //     e.preventDefault();
-  //     setFormSign({
-  //       ...formSign,
-  //       [formSign.user_username]: formSign.user_username,
-  //       [formSign.user_password]: formSign.user_password,
-  //       [formSign.user_email]: formSign.user_email,
-  //     });
-  //     axios
-  //       .post(
-  //         "https://ft-bw-may-secret-family-recipe.herokuapp.com/api/auth/register",
-  //         formSign
-  //       )
-  //       .then((res) => {
-  //         console.log(res);
-  //         localStorage.setItem("token", res.data.token);
-  //         history.push("/");
-  //       });
-  //   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setFormSign({
+      ...formSign,
+      [formSign.user_username]: formSign.user_username,
+      [formSign.user_password]: formSign.user_password,
+      [formSign.user_email]: formSign.user_email,
+    });
+    axios
+      .post(
+        "https://ft-bw-may-secret-family-recipe.herokuapp.com/api/auth/register",
+        formSign
+      )
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        history.push("/");
+      });
+  };
 
   return (
     <Modal.Dialog>
@@ -59,7 +55,7 @@ const SignInForm = (props) => {
         <Modal.Title>Register</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <form onSubmit={onSubmit}>
+        <form>
           <label htmlFor="email">Enter your e-mail.</label>
           <input
             name="user_email"

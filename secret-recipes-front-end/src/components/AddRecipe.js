@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import Button from "react-bootstrap/Button";
 import { Container, Row, Col, Button } from "reactstrap";
-import styled from "styled-components"
-
-import FormButton from './FormButton'
+import styled from "styled-components";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 //Styled Components
 const FormContainer = styled.div`
@@ -20,23 +20,29 @@ const Input = styled.input`
 `;
 
 const initialState = {
-  title: "",
-  source: "",
-  ingredients: "",
-  instructions: "",
+  recipe_name: "",
+  recipe_source: "",
   category: "",
+  recipe_steps: [
+    {
+      step_description: "",
+      step_number: null,
+    },
+  ],
+  step_ingredients: [
+    {
+      quantity: null,
+      ingredient: {
+        ingredient_name: "",
+        ingredient_unit: "",
+      },
+    },
+  ],
 };
 
-const ModifyRecipe = (props) => {
-  const {passedRecipe} = props;
+const AddRecipe = () => {
   const [recipeData, setRecipeData] = useState(initialState);
-  let formType;
-  console.log(1, formType);
-  useEffect(() => {
-    if (passedRecipe) {
-      setRecipeData(passedRecipe)
-    }
-  }, [passedRecipe])
+  const history = useHistory();
 
   const changeHandler = (e) => {
     e.preventDefault();
@@ -45,7 +51,18 @@ const ModifyRecipe = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post(
+        "https://ft-bw-may-secret-family-recipe.herokuapp.com/api/items",
+        recipeData
+      )
+      .then((res) => {
+        console.log(res);
+        alert("New Recipe Added 🤠");
+        history.push("/");
+      });
   };
+
   return (
     <Container>
       <Row>
@@ -60,8 +77,8 @@ const ModifyRecipe = (props) => {
                 Title
               </label>
               <Input
-                name="title"
-                value={recipeData.title}
+                name="recipe_name"
+                value={recipeData.recipe_name}
                 onChange={changeHandler}
                 className="form-control"
                 id="title"
@@ -75,8 +92,8 @@ const ModifyRecipe = (props) => {
               </label>
 
               <Input
-                name="source"
-                value={recipeData.source}
+                name="recipe_source"
+                value={recipeData.recipe_source}
                 onChange={changeHandler}
                 className="form-control"
                 id="source"
@@ -127,7 +144,6 @@ const ModifyRecipe = (props) => {
                 rows="3"
                 style={{ borderRadius: "5px" }}
               />
-            <FormButton buttonType={formType} />
               <Button style={{ margin: "5% 50%" }} className="btn btn-light">
                 Add
               </Button>
@@ -139,4 +155,4 @@ const ModifyRecipe = (props) => {
   );
 };
 
-export default ModifyRecipe;
+export default AddRecipe;
