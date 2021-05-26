@@ -1,35 +1,25 @@
-import './App.css'
-import ModifyRecipe from './components/ModifyRecipe'
-import Homepage from './components/Homepage/Homepage'
-import SignInForm from './components/Login/SignInForm'
-import SignUpForm from './components/Login/SignUpForm'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "./App.css";
+import AddRecipe from "./components/AddRecipe";
+import Homepage from "./components/Homepage/Homepage";
+import SignInForm from "./components/Login/SignInForm";
+import SignUpForm from "./components/Login/SignUpForm";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-function App () {
+function App() {
   return (
     <Router>
-      <div className='App'>
+      <div className="App">
         <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/signIn' component={SignInForm} />
-          <SignUpForm path='/signUp' component={SignUpForm} />
-          <Route path='/addRecipe' component={ModifyRecipe} />
-          <Route
-            path='/editRecipe/:id'
-            render={() => {
-              <ModifyRecipe
-                passedRecipe={
-                  "here I think? I'm not sure, you'd have to restructure this."
-                }
-              />
-            }}
-          />
+          <Route exact path="/" component={Homepage} />
+          <Route path="/signIn" component={SignInForm} />
+          <SignUpForm path="/signUp" component={SignUpForm} />
+          <Route path="/addRecipe" component={AddRecipe} />
         </Switch>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
