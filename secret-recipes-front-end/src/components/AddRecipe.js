@@ -118,7 +118,7 @@ const AddRecipe = () => {
                 style={{ borderRadius: "5px" }}
               />
 
-              <Button style={{ marginTop: "5%" }} className="btn btn-light">
+              <Button style={{ margin: "5% 50%" }} className="btn btn-light">
                 Add
               </Button>
             </form>
