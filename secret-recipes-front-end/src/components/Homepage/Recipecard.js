@@ -36,7 +36,7 @@ const Recipecard = (props) => {
                                 step.step_ingredients.map(ingredient => {
                                     const ingTarget = `/ingredient/${ingredient.ingredient.ingredient_id}`
                                     return (
-                                    <li className='ingredient' key={ingredient.step_ingredient_id}><a link={ingTarget} href={ingTarget} onClick={navToLink}>
+                                    <li className='ingredient' key={ingredient.step_ingredient_id}><a target={ingTarget} href={ingTarget} onClick={navToLink}>
                                         {`${ingredient.quantity} ${ingredient.ingredient.ingredient_unit}${ingredient.quantity === 1 ? '' : 's' }
                                          of ${ingredient.ingredient.ingredient_name}`}
                                     </a></li>
@@ -61,7 +61,7 @@ const Recipecard = (props) => {
                     ev.preventDefault();
                     deleteRecipe(recipe.recipe_id)
                 }}>Delete</Button>
-                <Button className="btn btn-light" href={`/edit/${recipe.recipe_id}`} target={`/edit/${recipe.recipe_id}`} onClick={navToLink}>
+                <Button className="btn btn-light" target={`/edit/${recipe.recipe_id}`} href={`/edit/${recipe.recipe_id}`} onClick={navToLink}>
                     Edit
                 </Button>
             </div>
