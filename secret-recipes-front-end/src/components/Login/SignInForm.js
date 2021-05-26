@@ -49,7 +49,7 @@ const SignInForm = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button title='' onClick={navToLink}>Log-In</Button>
-                <Button title='' onClick={navToLink}>Register</Button>
+                <Button title='' onClick={navToLink}>Register instead</Button>
             </Modal.Footer>
         </Modal.Dialog>
     )

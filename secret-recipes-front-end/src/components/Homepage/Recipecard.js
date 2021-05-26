@@ -61,7 +61,7 @@ const Recipecard = (props) => {
                     ev.preventDefault();
                     deleteRecipe(recipe.recipe_id)
                 }}>Delete</Button>
-                <Button className="btn btn-light" target={`/edit/${recipe.recipe_id}`} href={`/edit/${recipe.recipe_id}`} target={`/edit/${recipe.recipe_id}`} onClick={navToLink}>
+                <Button className="btn btn-light" target={`/edit/${recipe.recipe_id}`} href={`/edit/${recipe.recipe_id}`} onClick={navToLink}>
                     Edit
                 </Button>
             </div>
