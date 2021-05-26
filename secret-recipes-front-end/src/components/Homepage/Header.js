@@ -10,7 +10,6 @@ const Header = props => {
       <Navbar.Brand href='/'>Secret Recipes!</Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse>
-        <Nav.Link href='/'>Home</Nav.Link>
         {(() => {
           if (signedIn !== true) {
             return (
@@ -21,7 +20,8 @@ const Header = props => {
             )
           }
           if (signedIn === true) {
-            return <Nav.Link href='/addRecipe'>Add Recipe</Nav.Link>
+            return (<><Nav.Link href='/'>Home</Nav.Link>
+            <Nav.Link href='/addRecipe'>Add Recipe</Nav.Link></>)
           }
         })()}
       </Navbar.Collapse>
