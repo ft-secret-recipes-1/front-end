@@ -99,6 +99,18 @@ const AddRecipe = () => {
                 id="source"
               />
 
+              <label htmlFor="" style={{ display: "block", textAlign: "left" }}>
+                Describe Step
+              </label>
+
+              <Input
+                name=""
+                value={recipeData.recipe_steps[0].step_description}
+                onChange={changeHandler}
+                className="form-control"
+                id="step_description"
+              />
+
               <label
                 htmlFor="ingredients"
                 style={{ display: "block", textAlign: "left" }}
