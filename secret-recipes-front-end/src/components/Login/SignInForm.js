@@ -50,7 +50,7 @@ const SignInForm = (props) => {
           <label htmlFor="userName">Username:</label>
 
           <input
-            name="userName"
+            name="user_username"
             value={formSign.user_username}
             onChange={changeHandler}
             className="form-control"
@@ -59,7 +59,7 @@ const SignInForm = (props) => {
           <label htmlFor="password">Password:</label>
 
           <input
-            name="password"
+            name="user_password"
             type="password"
             value={formSign.user_password}
             onChange={changeHandler}
