@@ -6,7 +6,7 @@ import Header from './components/Homepage/Header'
 import Homepage from './components/Homepage/Homepage'
 import SignInForm from './components/Login/SignInForm'
 import SignUpForm from './components/Login/SignUpForm'
-import AddRecipe from './components/AddRecipe'
+import AddRecipe from './components/AddRecipe/AddRecipe'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App () {
@@ -49,6 +49,18 @@ function App () {
       ]
     }
   ])
+  const [ingredients, setIngredients] = useState([
+    {
+        "ingredient_id": 1,
+        "ingredient_name": "Broccoli",
+        "ingredient_unit": "lbs"
+    },
+    {
+        "ingredient_id": 2,
+        "ingredient_name": "Pesto",
+        "ingredient_unit": "lbs"
+    },
+])
 
   return (
     <Router>
@@ -64,7 +76,9 @@ function App () {
           />
           <Route path='/signIn' component={SignInForm} />
           <SignUpForm path='/signUp' component={SignUpForm} />
-          <Route path='/addRecipe' component={AddRecipe} />
+          <Route path='/addRecipe' render={() => {
+            return <AddRecipe ingredients={ingredients} setIngredients={setIngredients}/>
+          }} />
         </Switch>
       </div>
     </Router>
