@@ -12,8 +12,9 @@ const Input = styled.input`
 `;
 
 const Homepage = (props) => {
-  const [searchTerm, setSearchTerm] = useState("");
   const { recipes, setRecipes } = props;
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchRecipe, setSearchRecipe] = useState(recipes);
   console.log(props);
 
   // useEffect(() => {
@@ -40,6 +41,21 @@ const Homepage = (props) => {
       })
     );
   };
+
+  useEffect(() => {
+    setSearchRecipe(
+      recipes.filter((recipe) => {
+        if (
+          recipe.recipe_name.includes(searchTerm) ||
+          recipe.category.category.includes(searchTerm)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
+  }, [searchTerm]);
   return (
     <div className="homepage">
       <Input
@@ -50,7 +66,7 @@ const Homepage = (props) => {
         }}
       />
 
-      <Recipelist deleteRecipe={deleteRecipe} recipes={searchRecipes} />
+      <Recipelist deleteRecipe={deleteRecipe} recipes={searchRecipe} />
     </div>
   );
 };
