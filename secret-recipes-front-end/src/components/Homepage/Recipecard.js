@@ -50,7 +50,7 @@ const Recipecard = props => {
                       >
                         {`${ingredient.quantity} ${
                           ingredient.ingredient.ingredient_unit
-                        }${ingredient.quantity === 1 ? '' : 's'}
+                        }
                         of ${ingredient.ingredient.ingredient_name}`}
                       </a>
                     </li>
