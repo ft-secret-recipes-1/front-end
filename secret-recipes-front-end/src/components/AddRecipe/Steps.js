@@ -11,15 +11,22 @@ const Input = styled.input `
 
 const StyledSelect = styled.select`
     padding: 8px 10px;
-    border: 1px solid #d5d5d5;
+    border: 1px solid #d5d5d5; 
     border-radius: 5px;
     background: white;
     display: inline-block
 
 `
 
+const ingredientUnits = ['tsp', 'tbsp', 'lbs', 'fl oz', 'cup', 'pt', 'qt', 'gal', 'mL', 'litre', 'dL', 'oz', 'mg', 'g', 'kg']
+
 const Steps = (props) => {
+    const [steps, setSteps] = useState([])
     const {recipeData, setRecipeData, ingredients, setIngredients} = props;
+
+    const updateSelected = (ev) => {
+
+    }
 
     return (
         <Card>
@@ -49,14 +56,20 @@ const Steps = (props) => {
                                 value={
                                     recipeData.step_ingredients.recipe_source
                             }></Input><br/>
-                            <Input
-                                style={{display: 'inline-block', width: '75px'}}   
-                            >
-                            </Input>
-                            <StyledSelect style={{width: "70%"}}
+                            <StyledSelect
+                                style={{display: 'inline-block', width: '75px'}}
+                                value={this_steps_ingredients.ingredient_unit}
+                                onClick={updateSelected}
+                                >
+                                {ingredientUnits.map(unit => {
+                                    return (<option value={unit}>{unit}</option>)
+                                })}
+                            </StyledSelect>
+                            <StyledSelect style={{width: "70%", margin: '0 0 0 30px'}}
                                 name={`step_ingredients`}
                                 value={this_steps_ingredients}
-                                type='form'>
+                                type='form'
+                                onClick={updateSelected}>
                                     {ingredients.map(ing => {
                                         return(
                                         <option value={ing.ingredient_id}>{ing.ingredient_name} ({ing.ingredient_unit})</option>
