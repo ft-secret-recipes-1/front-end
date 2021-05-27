@@ -49,7 +49,8 @@ const Homepage = (props) => {
           setSearchTerm(e.target.value);
         }}
       />
-      <Recipelist deleteRecipe={deleteRecipe} recipes={recipes} />
+
+      <Recipelist deleteRecipe={deleteRecipe} recipes={searchRecipes} />
     </div>
   );
 };
