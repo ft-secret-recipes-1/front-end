@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
-import Recipelist from './Recipelist'
-import axios from 'axios'
+import { useEffect } from "react";
+import Recipelist from "./Recipelist";
+import axios from "axios";
 
 const Homepage = (props) => {
-  const {recipes, setRecipes} = props;
+  const { recipes, setRecipes } = props;
+  console.log(props);
 
   // useEffect(() => {
   //     let error = null;
@@ -19,21 +20,21 @@ const Homepage = (props) => {
   //     })
   // }, [])
 
-  const deleteRecipe = recipe_id => {
+  const deleteRecipe = (recipe_id) => {
     setRecipes(
-      recipes.filter(recipe => {
+      recipes.filter((recipe) => {
         if (recipe.recipe_id !== recipe_id) {
-          return true
+          return true;
         }
-        return false
+        return false;
       })
-    )
-  }
+    );
+  };
   return (
-    <div className='homepage'>
+    <div className="homepage">
       <Recipelist deleteRecipe={deleteRecipe} recipes={recipes} />
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;

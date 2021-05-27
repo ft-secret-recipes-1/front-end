@@ -5,10 +5,10 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const initialState = {
-  user_username: "",
-  user_password: "",
-  secondPassword: "",
-  user_email: "",
+  user_username: "kaseemb",
+  user_password: "12345678",
+  secondPassword: "12345678",
+  user_email: "kaseemb@gmail.com",
 };
 
 const SignInForm = (props) => {
@@ -31,22 +31,24 @@ const SignInForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setFormSign({
-      ...formSign,
-      [formSign.user_username]: formSign.user_username,
-      [formSign.user_password]: formSign.user_password,
-      [formSign.user_email]: formSign.user_email,
-    });
+
+    const tempFormSign = (({ user_username, user_password, user_email }) => ({
+      user_username,
+      user_password,
+      user_email,
+    }))(formSign);
+    console.log(tempFormSign);
     axios
       .post(
         "https://ft-bw-may-secret-family-recipe.herokuapp.com/api/auth/register",
-        formSign
+        tempFormSign
       )
       .then((res) => {
         console.log(res);
-        localStorage.setItem("token", res.data.token);
-        history.push("/");
-      });
+        localStorage.setItem("token", res.data);
+        history.push("/home");
+      })
+      .catch((err) => alert(err.response.data.message.toUpperCase()));
   };
 
   return (
