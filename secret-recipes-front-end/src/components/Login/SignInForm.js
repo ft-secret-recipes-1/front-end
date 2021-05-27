@@ -36,7 +36,7 @@ const SignInForm = (props) => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data);
-        history.push("/");
+        history.push("/home");
       });
   };
 
