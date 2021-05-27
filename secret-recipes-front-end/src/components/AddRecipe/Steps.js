@@ -21,11 +21,11 @@ const StyledSelect = styled.select`
 const ingredientUnits = ['tsp', 'tbsp', 'lbs', 'fl oz', 'cup', 'pt', 'qt', 'gal', 'mL', 'litre', 'dL', 'oz', 'mg', 'g', 'kg']
 
 const Steps = (props) => {
-    const [steps, setSteps] = useState([])
     const {recipeData, setRecipeData, ingredients, setIngredients} = props;
 
     const updateSelected = (ev) => {
-
+        ev.preventDefault();
+        setRecipeData({...recipeData, [ev.target.name]: ev.target.value})
     }
 
     return (
