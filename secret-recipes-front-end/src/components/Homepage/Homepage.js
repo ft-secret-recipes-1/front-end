@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Recipelist from "./Recipelist";
 import axios from "axios";
 import styled from "styled-components";
@@ -12,6 +12,7 @@ const Input = styled.input`
 `;
 
 const Homepage = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
   const { recipes, setRecipes } = props;
   console.log(props);
 
@@ -41,7 +42,13 @@ const Homepage = (props) => {
   };
   return (
     <div className="homepage">
-      <Input placeholder="Search Recipes" className="form-control" />
+      <Input
+        placeholder="Search Recipes"
+        className="form-control"
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
+      />
       <Recipelist deleteRecipe={deleteRecipe} recipes={recipes} />
     </div>
   );
