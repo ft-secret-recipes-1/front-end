@@ -5,10 +5,10 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const initialState = {
-  user_username: "kaseemb",
-  user_password: "12345678",
-  secondPassword: "12345678",
-  user_email: "kaseemb@gmail.com",
+  user_username: "",
+  user_password: "",
+  secondPassword: "",
+  user_email: "",
 };
 
 const SignInForm = (props) => {
