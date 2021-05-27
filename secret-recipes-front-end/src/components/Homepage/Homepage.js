@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import Recipelist from "./Recipelist";
 import axios from "axios";
+import styled from "styled-components";
+
+const Input = styled.input`
+  width: 25%;
+  padding: 6px 10px;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  margin-bottom: 15px;
+`;
 
 const Homepage = (props) => {
   const { recipes, setRecipes } = props;
@@ -32,6 +41,7 @@ const Homepage = (props) => {
   };
   return (
     <div className="homepage">
+      <Input placeholder="Search Recipes" className="form-control" />
       <Recipelist deleteRecipe={deleteRecipe} recipes={recipes} />
     </div>
   );
