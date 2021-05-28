@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Recipelist from "./Recipelist";
 import axios from "axios";
 import styled from "styled-components";
@@ -14,6 +14,8 @@ const Input = styled.input`
 
 const Homepage = (props) => {
   const { recipes, setRecipes } = props;
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchRecipe, setSearchRecipe] = useState(recipes);
   console.log(props);
 
   useEffect(() => {
@@ -47,10 +49,32 @@ const Homepage = (props) => {
       })
     );
   };
+
+  useEffect(() => {
+    setSearchRecipe(
+      recipes.filter((recipe) => {
+        if (
+          recipe.recipe_name.includes(searchTerm) ||
+          recipe.category.category.includes(searchTerm)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
+  }, [searchTerm]);
   return (
     <div className="homepage">
-      <Input placeholder="Search Recipes" className="form-control" />
-      <Recipelist deleteRecipe={deleteRecipe} recipes={recipes} />
+      <Input
+        placeholder="Search Recipes"
+        className="form-control"
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
+      />
+
+      <Recipelist deleteRecipe={deleteRecipe} recipes={searchRecipe} />
     </div>
   );
 };
