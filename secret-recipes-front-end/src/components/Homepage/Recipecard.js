@@ -58,9 +58,7 @@ const Recipecard = props => {
         }).catch(err => console.error(err.response))
     }, [])
 
-    const categeoryLink = `/category/${
-        recipe.category.category_id
-    }`
+
     const dsDef = ev => {
         ev.preventDefault()
         // history.push(ev.target.target)
@@ -97,7 +95,6 @@ const Recipecard = props => {
                             <br/>
                             <br/>
                             {(() => {
-                                console.log('here adrian', step)
                                 return((step.step_ingredients.length === 0) ? null : <b className='descriptor'>Ingredients:</b>)
                             })()}
                             <ul className='ingredients'>
@@ -139,9 +136,7 @@ const Recipecard = props => {
             } </ol>
             <div className='category'>
                 <h3>Category</h3>
-                <a onClick={dsDef}
-                    link={categeoryLink}
-                    href={categeoryLink}>
+                <a>
                     #{
                     recipe.category.category
                 } </a>

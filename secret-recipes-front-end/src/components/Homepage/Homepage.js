@@ -53,14 +53,10 @@ const Homepage = (props) => {
   useEffect(() => {
     setSearchRecipe(
       recipes.filter((recipe) => {
-        if (
-          recipe.recipe_name.includes(searchTerm) ||
-          recipe.category.category.includes(searchTerm)
-        ) {
-          return true;
-        } else {
-          return false;
-        }
+        if (recipe.category.category !== undefined) {return (
+          recipe.recipe_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          recipe.category.category.toLowerCase().includes(searchTerm.toLowerCase())
+        )}
       })
     );
   }, [searchTerm]);
@@ -69,12 +65,13 @@ const Homepage = (props) => {
       <Input
         placeholder="Search Recipes"
         className="form-control"
+        style={{margin:'10px auto'}}
         onChange={(e) => {
           setSearchTerm(e.target.value);
         }}
       />
 
-      <Recipelist deleteRecipe={deleteRecipe} recipes={searchRecipe} />
+      <Recipelist setSearchTerm={setSearchTerm} deleteRecipe={deleteRecipe} recipes={recipes} />
     </div>
   );
 };

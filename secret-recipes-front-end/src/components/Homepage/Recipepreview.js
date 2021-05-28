@@ -6,7 +6,7 @@ import {useParams} from 'react-router'
 import { axiosWithAuth } from "../helpers/axiosWithAuth";
 
 const Recipepreview = props => {
-    const {recipe} = props;
+    const {recipe, setSearchTerm} = props;
 
     const history = useHistory();
     const deleteRecipe = (recipe_id) => {
@@ -42,13 +42,11 @@ const Recipepreview = props => {
             <br/>
             <div className='category'>
                 <h3>Category</h3>
-                <a onClick={navToLink}
-                    link={categeoryLink}
-                    href={categeoryLink}>
+                <b>
                     #{
                     recipe.category.category
-                } </a>
-            </div>
+                } </b>
+            </div><br/>
             <div className='modifyCard'
                 style={
                     {
