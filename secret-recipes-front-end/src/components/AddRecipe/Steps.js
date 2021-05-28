@@ -4,7 +4,7 @@ import {Card} from "react-bootstrap";
 import styled from "styled-components";
 import {axiosWithAuth} from "../helpers/axiosWithAuth";
 
-const Input = styled.input `
+const Input = styled.input`
   width: 100%;
   padding: 6px 10px;
   border: 1px solid #d5d5d5;

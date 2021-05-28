@@ -1,14 +1,14 @@
-import { Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar } from "react-bootstrap";
 
-const Header = props => {
-  const { signedIn } = props
+const Header = (props) => {
+  const { signedIn } = props;
 
-  const showModal = ev => {}
+  // const showModal = ev => {}
 
   return (
-    <Navbar bg='light' expand='lg'>
-      <Navbar.Brand href='/'>Secret Recipes!</Navbar.Brand>
-      <Navbar.Toggle aria-controls='basic-navbar-nav' />
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">Secret Recipes!</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         {(() => {
           if (localStorage.getItem("token") === null) {
@@ -17,7 +17,7 @@ const Header = props => {
                 <Nav.Link href='/'>Sign-In</Nav.Link>
                 <Nav.Link href='/signUp'>Sign-Up</Nav.Link>
               </>
-            )
+            );
           }
           if (localStorage.getItem("token") !== null) {
             return (<><Nav.Link href='/home'>Home</Nav.Link>
@@ -26,7 +26,7 @@ const Header = props => {
         })()}
       </Navbar.Collapse>
     </Navbar>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
