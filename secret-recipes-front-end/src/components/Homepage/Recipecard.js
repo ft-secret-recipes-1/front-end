@@ -16,7 +16,7 @@ const Recipecard = props => {
             category_id: 0,
             category: "digital"
         },
-        shapedSteps: [
+        steps: [
             {
                 step_id: 0,
                 step_description: "Heat water",
@@ -51,11 +51,11 @@ const Recipecard = props => {
     const history = useHistory();
 
     useEffect(() => {
+        console.log('running')
         axiosWithAuth().get(`/recipes/${id}`).then(res => {
-            if (res.status !== 200) {
-                alert(res.data.message)
-            }
-            setRecipe(res.data)}).catch(err => console.error(err.response))
+            console.log(res);
+            setRecipe(res.data)
+        }).catch(err => console.error(err.response))
     }, [])
 
     const categeoryLink = `/category/${
@@ -85,7 +85,7 @@ const Recipecard = props => {
             <h3>Instructions</h3>
             <ol className='instructions'>
                 {
-                recipe.shapedSteps.map(step => {
+                recipe.steps.map(step => {
                     return (
                         <li key={
                             step.step_id
@@ -96,7 +96,10 @@ const Recipecard = props => {
                             }</b>
                             <br/>
                             <br/>
-                            <b className='descriptor'>Ingredients:</b>
+                            {(() => {
+                                console.log('here adrian', step)
+                                return((step.step_ingredients.length === 0) ? null : <b className='descriptor'>Ingredients:</b>)
+                            })()}
                             <ul className='ingredients'>
                                 {
                                 step.step_ingredients.map(ingredient => {
