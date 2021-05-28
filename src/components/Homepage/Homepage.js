@@ -40,6 +40,7 @@ const Homepage = (props) => {
   // }, [])
 
   const deleteRecipe = (recipe_id) => {
+    if (recipes !== undefined) {
     setRecipes(
       recipes.filter((recipe) => {
         if (recipe.recipe_id !== recipe_id) {
@@ -47,10 +48,11 @@ const Homepage = (props) => {
         }
         return false;
       })
-    );
+    )};
   };
 
   useEffect(() => {
+    if (recipes !== undefined) {
     setSearchRecipe(
       recipes.filter((recipe) => {
         if (recipe.category.category !== undefined) {return (
@@ -58,7 +60,7 @@ const Homepage = (props) => {
           recipe.category.category.toLowerCase().includes(searchTerm.toLowerCase())
         )} else return true;
       })
-    );
+    )};
   }, [searchTerm, recipes]);
   return (
     <div className="homepage">

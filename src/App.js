@@ -14,44 +14,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 
 function App() {
   // this initial state is a placeholder, and can be removed.
-  const [recipes, setRecipes] = useState([
-    {
-      recipe_id: 0,
-      recipe_name: "Placeholder",
-      recipe_source: "Adrian",
-      user_id: 0,
-      category: {
-        category_id: 0,
-        category: "digital",
-      },
-      shapedSteps: [
-        {
-          step_id: 0,
-          step_description: "Heat water",
-          step_ingredients: [
-            {
-              step_ingredient_id: 3,
-              quantity: 1,
-              ingredient: {
-                ingredient_id: 7,
-                ingredient_name: "water",
-                ingredient_unit: "oz",
-              },
-            },
-            {
-              step_ingredient_id: 2,
-              quantity: 5,
-              ingredient: {
-                ingredient_id: 2,
-                ingredient_name: "Garlic",
-                ingredient_unit: "clove",
-              },
-            },
-          ],
-        },
-      ],
-    },
-  ]);
+  const [recipes, setRecipes] = useState();
 
   return (
     <Router>

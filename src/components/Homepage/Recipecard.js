@@ -7,41 +7,7 @@ import {axiosWithAuth} from "../helpers/axiosWithAuth";
 import { useEffect } from "react";
 
 const Recipecard = props => {
-    const [recipe, setRecipe] = useState({
-        recipe_id: 0,
-        recipe_name: "Placeholder",
-        recipe_source: "Adrian",
-        user_id: 0,
-        category: {
-            category_id: 0,
-            category: "digital"
-        },
-        steps: [
-            {
-                step_id: 0,
-                step_description: "Heat water",
-                step_ingredients: [
-                    {
-                        step_ingredient_id: 3,
-                        quantity: 1,
-                        ingredient: {
-                            ingredient_id: 7,
-                            ingredient_name: "water",
-                            ingredient_unit: "oz"
-                        }
-                    }, {
-                        step_ingredient_id: 2,
-                        quantity: 5,
-                        ingredient: {
-                            ingredient_id: 2,
-                            ingredient_name: "Garlic",
-                            ingredient_unit: "clove"
-                        }
-                    },
-                ]
-            },
-        ]
-    })
+    const [recipe, setRecipe] = useState()
 
     const deleteRecipe = (recipe_id) => {
         axiosWithAuth().delete(`recipes/${recipe_id}`).then(res => console.log(res)).catch(err => (console.error(err.response)))
@@ -63,13 +29,13 @@ const Recipecard = props => {
         ev.preventDefault()
         // history.push(ev.target.target)
     }
-    return (
+    return (recipe !== undefined) ? (
         <Card className='Recipecard'
             style={
                 {
                     width: '500px',
                     padding: '30px',
-                    margin: '0 auto 0 auto'
+                    margin: '100px auto 0 auto'
                 }
         }>
             <h2>{
@@ -173,7 +139,7 @@ const Recipecard = props => {
                 </Button>
             </div>
         </Card>
-    )
+    ) : null
 }
 
 export default Recipecard
