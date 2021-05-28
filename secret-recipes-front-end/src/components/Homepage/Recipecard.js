@@ -58,9 +58,7 @@ const Recipecard = props => {
         }).catch(err => console.error(err.response))
     }, [])
 
-    const categeoryLink = `/category/${
-        recipe.category.category_id
-    }`
+
     const dsDef = ev => {
         ev.preventDefault()
         // history.push(ev.target.target)

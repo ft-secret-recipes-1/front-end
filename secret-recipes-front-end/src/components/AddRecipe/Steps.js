@@ -20,17 +20,18 @@ const StyledSelect = styled.select `
     display: inline-block
 
 `
-
+const initialIngredient = {
+    ingredient_id: 0,
+    ingredient_name: 'loading',
+    ingredient_unit: 'n/a'
+}
 
 const Steps = (props) => {
     const {recipeData, setRecipeData} = props;
-    const [ingredients, setIngredients] = useState([{
-            ingredient_id: 0,
-            ingredient_name: 'loading',
-            ingredient_unit: 'n/a'
-        }])
+    const [ingredients, setIngredients] = useState([initialIngredient])
     const updateSelected = (ev) => {
         ev.preventDefault();
+        console.log(ev.target.name, ev.target.value, 'here pls')
         setRecipeData({
             ...recipeData,
             [ev.target.name]: ev.target.value
@@ -49,9 +50,8 @@ const Steps = (props) => {
                 <Card.Title>Steps</Card.Title>
                 {
                 recipeData.recipe_steps.map((step, index) => {
-                    const this_steps_ingredients = recipeData.step_ingredients[index];
                     return (
-                        <>
+                        <div key={index}>
                             <h6 style={
                                 {
                                     display: 'inline',
@@ -91,13 +91,13 @@ const Steps = (props) => {
                                     }
                                 }
                                 name={`step_ingredients`}
-                                value={this_steps_ingredients}
+                                value={recipeData.step_ingredients[index]}
                                 type='form'
-                                onClick={updateSelected}>
+                                onChange={updateSelected}>
                                 {
                                 ingredients.map((ing, ingind) => {
                                     return (
-                                        <option value={ingind}>
+                                        <option key={ingind} value={ingind}>
                                             {
                                             ing.ingredient_name
                                         }
@@ -107,7 +107,7 @@ const Steps = (props) => {
                                     )
                                 })
                             } </StyledSelect>
-                        </>
+                        </div>
                     )
                 })
             } </Card.Body>
