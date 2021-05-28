@@ -53,14 +53,10 @@ const Homepage = (props) => {
   useEffect(() => {
     setSearchRecipe(
       recipes.filter((recipe) => {
-        if (
-          recipe.recipe_name.includes(searchTerm) ||
-          recipe.category.category.includes(searchTerm)
-        ) {
-          return true;
-        } else {
-          return false;
-        }
+        return (
+          recipe.recipe_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          recipe.category.category.toLowerCase().includes(searchTerm.toLowerCase())
+        )
       })
     );
   }, [searchTerm]);
