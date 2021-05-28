@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useState} from "react";
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import styled from "styled-components";
 import {axiosWithAuth} from "../helpers/axiosWithAuth";
 
@@ -22,25 +22,41 @@ const StyledSelect = styled.select `
 `
 const initialIngredient = {
     ingredient_id: 0,
-    ingredient_name: 'loading',
+    ingredient_name: 'none',
     ingredient_unit: 'n/a'
 }
 
+const initialRecipeStep = {
+    recipe_source: ''
+}
+
+
 const Steps = (props) => {
     const {recipeData, setRecipeData} = props;
+    const [recipeSteps, setRecipeSteps] = useState([])
+    const [recipeIngredients, setRecipeIngredients] = useState([])
     const [ingredients, setIngredients] = useState([initialIngredient])
     const updateSelected = (ev) => {
         ev.preventDefault();
         console.log(ev.target.name, ev.target.value, 'here pls')
-        setRecipeData({
-            ...recipeData,
+        setRecipeSteps({
+            ...recipeSteps,
             [ev.target.name]: ev.target.value
         })
     }
 
+    const updateIngredients = ev => {
+        ev.preventDefault();
+        console.log(ev.target.name, ev.target.value, 'yes here this time');
+        let newRecipes = [...recipeSteps]
+        let index = ev.target.name.match(/\[(.*?)\]/)
+        newRecipes[index] = [ev.target.value]
+        setRecipeIngredients(newRecipes)
+    }
+
     useEffect(() => {
         axiosWithAuth().get("/ingredients").then(res => {
-            setIngredients(res.data)
+            setIngredients(res.data.concat(initialIngredient))
         }).catch(err => console.error(err.response))
     }, [])
 
@@ -49,7 +65,7 @@ const Steps = (props) => {
             <Card.Body>
                 <Card.Title>Steps</Card.Title>
                 {
-                recipeData.recipe_steps.map((step, index) => {
+                recipeSteps.map((step, index) => {
                     return (
                         <div key={index}>
                             <h6 style={
@@ -60,7 +76,7 @@ const Steps = (props) => {
                             }>
                                 {
                                 `${
-                                    step.step_number
+                                    index+1
                                 }.  `
                             }</h6>
                             <Input style={
@@ -70,10 +86,10 @@ const Steps = (props) => {
                                     }
                                 }
                                 name={
-                                    `step_ingredients[${index}].recipe_source`
+                                    `recipeSteps[${index}].recipe_source`
                                 }
                                 value={
-                                    recipeData.step_ingredients.recipe_source
+                                    recipeSteps[index].recipe_source
                             }></Input><br/>
                             <Input style={
                                     {
@@ -82,18 +98,18 @@ const Steps = (props) => {
                                     }
                                 }
                                 name={
-                                    `step_ingredients[${index}].`
+                                    `recipeSteps[${index}].`
                                 }/>
                             <StyledSelect style={
                                     {
-                                        width: "70%",
+                                        width: "auto",
                                         margin: '0 0 0 30px'
                                     }
                                 }
-                                name={`step_ingredients`}
-                                value={recipeData.step_ingredients[index]}
+                                name={`recipeIngredients[${index}]`}
+                                value={recipeIngredients[index]}
                                 type='form'
-                                onChange={updateSelected}>
+                                onChange={updateIngredients}>
                                 {
                                 ingredients.map((ing, ingind) => {
                                     return (
@@ -106,11 +122,15 @@ const Steps = (props) => {
                                         })</option>
                                     )
                                 })
-                            } </StyledSelect>
+                            } </StyledSelect><br/>
                         </div>
                     )
-                })
-            } </Card.Body>
+                })}
+                {<Button onClick={() => {
+                    setRecipeSteps([...recipeSteps, initialRecipeStep])
+                    setRecipeIngredients([...recipeIngredients, initialIngredient])
+                }}>+</Button>}
+            </Card.Body>
         </Card>
     )
 }

@@ -23,24 +23,9 @@ const Input = styled.input `
 `;
 
 const initialState = {
-    recipe_name: "k",
-    recipe_source: "k",
-    category: "k",
-    recipe_steps: [
-        {
-            step_description: "k",
-            step_number: 1
-        },
-    ],
-    step_ingredients: [
-        {
-            quantity: 1,
-            ingredient: {
-                ingredient_name: "k",
-                ingredient_unit: "k"
-            }
-        },
-    ]
+    recipe_name: "",
+    recipe_source: "",
+    category: "",
 };
 
 const AddRecipe = (props) => {
