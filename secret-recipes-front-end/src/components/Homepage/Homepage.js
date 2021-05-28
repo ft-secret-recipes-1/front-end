@@ -65,12 +65,13 @@ const Homepage = (props) => {
       <Input
         placeholder="Search Recipes"
         className="form-control"
+        style={{margin:'10px auto'}}
         onChange={(e) => {
           setSearchTerm(e.target.value);
         }}
       />
 
-      <Recipelist setSearchTerm={setSearchTerm} deleteRecipe={deleteRecipe} recipes={searchRecipe} />
+      <Recipelist setSearchTerm={setSearchTerm} deleteRecipe={deleteRecipe} recipes={recipes} />
     </div>
   );
 };
