@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from "reactstrap";
 import styled from "styled-components";
 import axios from "axios";
 import Steps from "./Steps";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 //Styled Components
 const FormContainer = styled.div`
@@ -43,10 +43,10 @@ const initialState = {
 
 const AddRecipe = (props) => {
   const [recipeData, setRecipeData] = useState(initialState);
-  const [ingredientData, setIngredientData] = useState([{ingredient_id: 0, ingredient_name: 0, ingredient_unit: 'oz'}]);
-  const {ingredients, setIngredients} = props;
+  // const [ingredientData, setIngredientData] = useState([{ingredient_id: 0, ingredient_name: 0, ingredient_unit: 'oz'}]);
+  const { ingredients, setIngredients } = props;
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const changeHandler = (e) => {
     e.preventDefault();
@@ -107,7 +107,12 @@ const AddRecipe = (props) => {
                 Describe Step
               </label>
 
-              <Steps ingredients={ingredients} setIngredients={setIngredients} recipeData={recipeData} setRecipeData={setRecipeData} />
+              <Steps
+                ingredients={ingredients}
+                setIngredients={setIngredients}
+                recipeData={recipeData}
+                setRecipeData={setRecipeData}
+              />
 
               <label
                 htmlFor="category"
