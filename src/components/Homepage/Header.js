@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">Secret Recipes!</Navbar.Brand>
+      <Navbar.Brand href="/home">Secret Recipes!</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         {(() => {
