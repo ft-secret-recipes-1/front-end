@@ -1,5 +1,8 @@
+import {useEffect} from "react";
+import {useState} from "react";
 import {Card} from "react-bootstrap";
 import styled from "styled-components";
+import {axiosWithAuth} from "../helpers/axiosWithAuth";
 
 const Input = styled.input `
   width: 100%;
@@ -9,7 +12,7 @@ const Input = styled.input `
   margin-bottom: 15px;
 `;
 
-const StyledSelect = styled.select`
+const StyledSelect = styled.select `
     padding: 8px 10px;
     border: 1px solid #d5d5d5; 
     border-radius: 5px;
@@ -18,15 +21,27 @@ const StyledSelect = styled.select`
 
 `
 
-const ingredientUnits = ['tsp', 'tbsp', 'lbs', 'fl oz', 'cup', 'pt', 'qt', 'gal', 'mL', 'litre', 'dL', 'oz', 'mg', 'g', 'kg']
 
 const Steps = (props) => {
-    const {recipeData, setRecipeData, ingredients, setIngredients} = props;
-
+    const {recipeData, setRecipeData} = props;
+    const [ingredients, setIngredients] = useState([{
+            ingredient_id: 0,
+            ingredient_name: 'loading',
+            ingredient_unit: 'n/a'
+        }])
     const updateSelected = (ev) => {
         ev.preventDefault();
-        setRecipeData({...recipeData, [ev.target.name]: ev.target.value})
+        setRecipeData({
+            ...recipeData,
+            [ev.target.name]: ev.target.value
+        })
     }
+
+    useEffect(() => {
+        axiosWithAuth().get("/ingredients").then(res => {
+            setIngredients(res.data)
+        }).catch(err => console.error(err.response))
+    }, [])
 
     return (
         <Card>
@@ -38,8 +53,10 @@ const Steps = (props) => {
                     return (
                         <>
                             <h6 style={
-                                {display: 'inline',
-                            width: '10%'}
+                                {
+                                    display: 'inline',
+                                    width: '10%'
+                                }
                             }>
                                 {
                                 `${
@@ -47,34 +64,49 @@ const Steps = (props) => {
                                 }.  `
                             }</h6>
                             <Input style={
-                                    {display: "inline-block",
-                                width: '80%'}
+                                    {
+                                        display: "inline-block",
+                                        width: '80%'
+                                    }
                                 }
                                 name={
-                                    `step_ingredients[${index}]`
+                                    `step_ingredients[${index}].recipe_source`
                                 }
                                 value={
                                     recipeData.step_ingredients.recipe_source
                             }></Input><br/>
-                            <StyledSelect
-                                style={{display: 'inline-block', width: '75px'}}
-                                value={this_steps_ingredients.ingredient_unit}
-                                onClick={updateSelected}
-                                >
-                                {ingredientUnits.map(unit => {
-                                    return (<option value={unit}>{unit}</option>)
-                                })}
-                            </StyledSelect>
-                            <StyledSelect style={{width: "70%", margin: '0 0 0 30px'}}
+                            <Input style={
+                                    {
+                                        display: "inline",
+                                        width: "10%"
+                                    }
+                                }
+                                name={
+                                    `step_ingredients[${index}].`
+                                }/>
+                            <StyledSelect style={
+                                    {
+                                        width: "70%",
+                                        margin: '0 0 0 30px'
+                                    }
+                                }
                                 name={`step_ingredients`}
                                 value={this_steps_ingredients}
                                 type='form'
                                 onClick={updateSelected}>
-                                    {ingredients.map(ing => {
-                                        return(
-                                        <option value={ing.ingredient_id}>{ing.ingredient_name} ({ing.ingredient_unit})</option>
-                                    )})}
-                            </StyledSelect>
+                                {
+                                ingredients.map((ing, ingind) => {
+                                    return (
+                                        <option value={ingind}>
+                                            {
+                                            ing.ingredient_name
+                                        }
+                                            ({
+                                            ing.ingredient_unit
+                                        })</option>
+                                    )
+                                })
+                            } </StyledSelect>
                         </>
                     )
                 })

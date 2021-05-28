@@ -7,6 +7,7 @@ import Homepage from './components/Homepage/Homepage'
 import SignInForm from './components/Login/SignInForm'
 import SignUpForm from './components/Login/SignUpForm'
 import AddRecipe from './components/AddRecipe/AddRecipe'
+import Recipecard from "./components/Homepage/Recipecard";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { PrivateRoute } from "./components/PrivateRoute";
@@ -66,6 +67,9 @@ function App() {
           <Route exact path="/" component={SignInForm} />
           <Route path="/signUp" component={SignUpForm} />
           <Route path="/addRecipe" component={AddRecipe} />
+          <PrivateRoute
+            component={Recipecard}
+            path="/recipe/:id"/>
         </Switch>
       </div>
     </Router>

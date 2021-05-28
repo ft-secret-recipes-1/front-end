@@ -11,16 +11,16 @@ const Header = props => {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse>
         {(() => {
-          if (signedIn !== true) {
+          if (localStorage.getItem("token") === null) {
             return (
               <>
-                <Nav.Link href='/signIn'>Sign-In</Nav.Link>
+                <Nav.Link href='/'>Sign-In</Nav.Link>
                 <Nav.Link href='/signUp'>Sign-Up</Nav.Link>
               </>
             )
           }
-          if (signedIn === true) {
-            return (<><Nav.Link href='/'>Home</Nav.Link>
+          if (localStorage.getItem("token") !== null) {
+            return (<><Nav.Link href='/home'>Home</Nav.Link>
             <Nav.Link href='/addRecipe'>Add Recipe</Nav.Link></>)
           }
         })()}

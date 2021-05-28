@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Recipelist from "./Recipelist";
 import axios from "axios";
 import styled from "styled-components";
+import { axiosWithAuth } from "../helpers/axiosWithAuth";
 
 const Input = styled.input`
   width: 25%;
@@ -15,6 +16,13 @@ const Homepage = (props) => {
   const { recipes, setRecipes } = props;
   console.log(props);
 
+  useEffect(() => {
+    axiosWithAuth().get('/recipes')
+    .catch(err => {console.error(err.response)})
+    .then(res => {
+      console.log(res)
+      setRecipes(res.data)})
+  }, [])
   // useEffect(() => {
   //     let error = null;
   //     axios.get('https://ft-bw-may-secret-family-recipe.herokuapp.com/api')

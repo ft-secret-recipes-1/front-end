@@ -1,4 +1,5 @@
 import Recipecard from "./Recipecard";
+import Recipepreview from "./Recipepreview";
 
 const Recipelist = (props) => {
   const { recipes, deleteRecipe } = props;
@@ -7,11 +8,11 @@ const Recipelist = (props) => {
     <div>
       {recipes.map((recipe) => {
         return (
-          <Recipecard
+          <Recipepreview
             key={recipe.recipe_id}
             deleteRecipe={deleteRecipe}
             recipe={recipe}
-          ></Recipecard>
+          ></Recipepreview>
         );
       })}
     </div>
