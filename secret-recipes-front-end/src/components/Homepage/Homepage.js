@@ -53,10 +53,10 @@ const Homepage = (props) => {
   useEffect(() => {
     setSearchRecipe(
       recipes.filter((recipe) => {
-        return (
+        if (recipe.category.category !== undefined) {return (
           recipe.recipe_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           recipe.category.category.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+        )}
       })
     );
   }, [searchTerm]);
@@ -70,7 +70,7 @@ const Homepage = (props) => {
         }}
       />
 
-      <Recipelist deleteRecipe={deleteRecipe} recipes={searchRecipe} />
+      <Recipelist setSearchTerm={setSearchTerm} deleteRecipe={deleteRecipe} recipes={searchRecipe} />
     </div>
   );
 };

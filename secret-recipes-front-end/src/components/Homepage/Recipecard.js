@@ -139,9 +139,7 @@ const Recipecard = props => {
             } </ol>
             <div className='category'>
                 <h3>Category</h3>
-                <a onClick={dsDef}
-                    link={categeoryLink}
-                    href={categeoryLink}>
+                <a>
                     #{
                     recipe.category.category
                 } </a>

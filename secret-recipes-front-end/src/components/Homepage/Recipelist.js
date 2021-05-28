@@ -1,8 +1,7 @@
-import Recipecard from "./Recipecard";
 import Recipepreview from "./Recipepreview";
 
 const Recipelist = (props) => {
-  const { recipes, deleteRecipe } = props;
+  const { recipes, deleteRecipe, setSearchTerm} = props;
   console.log(props);
   return (
     <div>
@@ -12,6 +11,7 @@ const Recipelist = (props) => {
             key={recipe.recipe_id}
             deleteRecipe={deleteRecipe}
             recipe={recipe}
+            setSearchTerm={setSearchTerm}
           ></Recipepreview>
         );
       })}
