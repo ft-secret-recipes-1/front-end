@@ -1,10 +1,6 @@
 import { Nav, Navbar } from "react-bootstrap";
 
-const Header = (props) => {
-  const { signedIn } = props;
-
-  // const showModal = ev => {}
-
+const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/">Secret Recipes!</Navbar.Brand>

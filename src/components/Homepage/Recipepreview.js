@@ -1,12 +1,10 @@
 import {useHistory} from "react-router";
-import {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import {useParams} from 'react-router'
 import { axiosWithAuth } from "../helpers/axiosWithAuth";
 
 const Recipepreview = props => {
-    const {recipe, setSearchTerm} = props;
+    const {recipe} = props;
 
     const history = useHistory();
     const deleteRecipe = (recipe_id) => {
@@ -17,11 +15,6 @@ const Recipepreview = props => {
         history.push(ev.target.link)
     }
 
-    const categeoryLink = `/category/${
-        recipe.category.category_id
-    }`
-
-
 
     return (
         <Card className='Recipecard'
@@ -29,7 +22,7 @@ const Recipepreview = props => {
                 {
                     width: '500px',
                     padding: '30px',
-                    margin: '0 auto 0 auto'
+                    margin: '10px auto 0 auto'
                 }
         }>
             <h2>{
