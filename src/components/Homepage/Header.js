@@ -14,13 +14,13 @@ const Header = (props) => {
           if (localStorage.getItem("token") === null) {
             return (
               <>
-                <Nav.Link href='/'>Sign-In</Nav.Link>
+                <Nav.Link className='ml-auto' href='/'>Sign-In</Nav.Link>
                 <Nav.Link href='/signUp'>Sign-Up</Nav.Link>
               </>
             );
           }
           if (localStorage.getItem("token") !== null) {
-            return (<><Nav.Link href='/home'>Home</Nav.Link>
+            return (<><Nav.Link className='ml-auto' href='/home'>Home</Nav.Link>
             <Nav.Link href='/addRecipe'>Add Recipe</Nav.Link></>)
           }
         })()}
