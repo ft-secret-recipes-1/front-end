@@ -56,7 +56,7 @@ const Recipecard = props => {
             console.log(res);
             setRecipe(res.data)
         }).catch(err => console.error(err.response))
-    }, [])
+    }, [id])
 
 
     const dsDef = ev => {
@@ -108,7 +108,7 @@ const Recipecard = props => {
                                             key={
                                                 ingredient.step_ingredient_id
                                         }>
-                                            <a href="#"
+                                            <a href={ingTarget}
                                                 onClick={
                                                     (ev) => {
                                                         dsDef();
@@ -136,10 +136,10 @@ const Recipecard = props => {
             } </ol>
             <div className='category'>
                 <h3>Category</h3>
-                <a>
+                <b>
                     #{
                     recipe.category.category
-                } </a>
+                } </b>
             </div>
             <div className='modifyCard'
                 style={

@@ -24,7 +24,7 @@ const Homepage = (props) => {
     .then(res => {
       console.log(res)
       setRecipes(res.data)})
-  }, [])
+  }, [setRecipes])
   // useEffect(() => {
   //     let error = null;
   //     axios.get('https://ft-bw-may-secret-family-recipe.herokuapp.com/api')
@@ -56,7 +56,7 @@ const Homepage = (props) => {
         if (recipe.category.category !== undefined) {return (
           recipe.recipe_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           recipe.category.category.toLowerCase().includes(searchTerm.toLowerCase())
-        )}
+        )} else return true;
       })
     );
   }, [searchTerm, recipes]);
@@ -71,7 +71,7 @@ const Homepage = (props) => {
         }}
       />
 
-      <Recipelist setSearchTerm={setSearchTerm} deleteRecipe={deleteRecipe} recipes={recipes} />
+      <Recipelist setSearchTerm={setSearchTerm} deleteRecipe={deleteRecipe} recipes={searchRecipe} />
     </div>
   );
 };
