@@ -97,7 +97,6 @@ const Recipecard = props => {
                             <br/>
                             <br/>
                             {(() => {
-                                console.log('here adrian', step)
                                 return((step.step_ingredients.length === 0) ? null : <b className='descriptor'>Ingredients:</b>)
                             })()}
                             <ul className='ingredients'>
