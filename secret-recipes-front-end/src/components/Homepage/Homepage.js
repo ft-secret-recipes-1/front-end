@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Recipelist from "./Recipelist";
-import axios from "axios";
+// import axios from "axios";
 import styled from "styled-components";
 
 const Input = styled.input`
@@ -15,7 +15,7 @@ const Homepage = (props) => {
   const { recipes, setRecipes } = props;
   const [searchTerm, setSearchTerm] = useState("");
   const [searchRecipe, setSearchRecipe] = useState(recipes);
-  console.log(props);
+  // console.log(props);
 
   // useEffect(() => {
   //     let error = null;
@@ -55,7 +55,7 @@ const Homepage = (props) => {
         }
       })
     );
-  }, [searchTerm]);
+  }, [searchTerm, recipes]);
   return (
     <div className="homepage">
       <Input
